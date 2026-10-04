@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Setoran Uang</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div>
+      <h1>Setoran Uang</h1>
+      <p>Catat setoran dengan mudah dan cepat</p>
+    </div>
+    <a class="admin-link" href="admin.html">Admin</a>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div>
+        <span class="badge">SETORAN ONLINE</span>
+        <h2>Form Setoran</h2>
+        <p>Silakan isi data setoran dengan benar.</p>
+      </div>
+    </section>
+
+    <section class="card">
+      <form id="depositForm">
+        <label for="nama">Nama Penyetor</label>
+        <input id="nama" name="nama" type="text" maxlength="80" placeholder="Masukkan nama" required>
+
+        <label for="nominal">Nominal Setoran</label>
+        <input id="nominal" name="nominal" type="number" min="100" step="100" placeholder="Contoh: 50000" required>
+
+        <label for="tanggal">Tanggal Setoran</label>
+        <input id="tanggal" name="tanggal" type="date" required>
+
+        <label for="keterangan">Keterangan</label>
+        <textarea id="keterangan" name="keterangan" maxlength="200" placeholder="Opsional"></textarea>
+
+        <button type="submit" id="submitBtn">Simpan Setoran</button>
+        <p id="formMessage" class="message"></p>
+      </form>
+    </section>
+
+    <section class="stats">
+      <div class="stat-card">
+        <span>Total Setoran</span>
+        <strong id="totalAmount">Rp0</strong>
+      </div>
+      <div class="stat-card">
+        <span>Jumlah Transaksi</span>
+        <strong id="totalCount">0</strong>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="section-head">
+        <h2>Riwayat Setoran</h2>
+        <input id="searchInput" class="search" type="search" placeholder="Cari nama...">
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Tanggal</th>
+              <th>Nama</th>
+              <th>Nominal</th>
+              <th>Keterangan</th>
+            </tr>
+          </thead>
+          <tbody id="depositTable">
+            <tr><td colspan="4" class="empty">Memuat data...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <footer>© 2026 Setoran Uang</footer>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>

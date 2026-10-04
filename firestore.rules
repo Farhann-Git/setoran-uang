@@ -1,0 +1,25 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /deposits/{depositId} {
+      // Pengunjung boleh membuat setoran baru.
+      allow create: if
+        request.resource.data.keys().hasOnly([
+          'nama', 'nominal', 'tanggal', 'keterangan', 'createdAt'
+        ])
+        && request.resource.data.nama is string
+        && request.resource.data.nama.size() >= 1
+        && request.resource.data.nama.size() <= 80
+        && request.resource.data.nominal is number
+        && request.resource.data.nominal >= 100
+        && request.resource.data.tanggal is string
+        && request.resource.data.tanggal.size() == 10
+        && request.resource.data.keterangan is string
+        && request.resource.data.keterangan.size() <= 200;
+
+      // Hanya user yang sudah login (admin) boleh membaca/menghapus.
+      allow read, update, delete: if request.auth != null;
+    }
+  }
+}
